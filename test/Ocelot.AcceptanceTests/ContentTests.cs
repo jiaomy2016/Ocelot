@@ -30,9 +30,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamScheme = "http",
@@ -68,9 +68,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamHostAndPorts = new List<FileHostAndPort>
@@ -109,9 +109,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamHostAndPorts = new List<FileHostAndPort>
@@ -147,7 +147,7 @@ namespace Ocelot.AcceptanceTests
 
         private void ThenTheContentLengthShouldBeZero()
         {
-            _contentLength.ShouldBeEquivalentTo(0L);
+            _contentLength.ShouldBeNull();
         }
 
         private void ThenTheContentLengthIs(int expected)

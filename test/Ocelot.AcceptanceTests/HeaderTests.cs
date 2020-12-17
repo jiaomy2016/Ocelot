@@ -29,9 +29,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamScheme = "http",
@@ -70,9 +70,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamScheme = "http",
@@ -110,9 +110,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamScheme = "http",
@@ -154,9 +154,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamScheme = "http",
@@ -198,9 +198,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamScheme = "http",
@@ -246,9 +246,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                 {
-                    new FileReRoute
+                    new FileRoute
                     {
                         DownstreamPathTemplate = "/sso/{everything}",
                         DownstreamScheme = "http",
@@ -289,9 +289,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                 {
-                    new FileReRoute
+                    new FileRoute
                     {
                         DownstreamPathTemplate = "/sso/{everything}",
                         DownstreamScheme = "http",
@@ -332,9 +332,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamScheme = "http",
@@ -369,9 +369,9 @@ namespace Ocelot.AcceptanceTests
 
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamScheme = "http",
@@ -413,9 +413,18 @@ namespace Ocelot.AcceptanceTests
                     return Task.CompletedTask;
                 }
 
-                if (context.Request.Cookies.TryGetValue("test", out var cookieValue) || context.Request.Headers.TryGetValue("Set-Cookie", out var headerValue))
+                if (context.Request.Cookies.TryGetValue("test", out var cookieValue))
                 {
-                    if (cookieValue == "0" || headerValue == "test=1; path=/")
+                    if (cookieValue == "0")
+                    {
+                        context.Response.StatusCode = statusCode;
+                        return Task.CompletedTask;
+                    }
+                }
+
+                if (context.Request.Headers.TryGetValue("Set-Cookie", out var headerValue))
+                {
+                    if (headerValue == "test=1; path=/")
                     {
                         context.Response.StatusCode = statusCode;
                         return Task.CompletedTask;

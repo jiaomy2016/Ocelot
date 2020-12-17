@@ -32,7 +32,7 @@
         {
             var configuration = new OcelotPipelineConfiguration
             {
-                AuthorisationMiddleware = async (ctx, next) =>
+                AuthorizationMiddleware = async (ctx, next) =>
                 {
                     _counter++;
                     await next.Invoke();
@@ -43,9 +43,9 @@
 
             var fileConfiguration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamHostAndPorts = new List<FileHostAndPort>
@@ -73,11 +73,11 @@
         }
 
         [Fact]
-        public void should_call_authorisation_middleware()
+        public void should_call_authorization_middleware()
         {
             var configuration = new OcelotPipelineConfiguration
             {
-                AuthorisationMiddleware = async (ctx, next) =>
+                AuthorizationMiddleware = async (ctx, next) =>
                 {
                     _counter++;
                     await next.Invoke();
@@ -88,9 +88,9 @@
 
             var fileConfiguration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamHostAndPorts = new List<FileHostAndPort>
@@ -133,9 +133,9 @@
 
             var fileConfiguration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/41879/",
                             DownstreamHostAndPorts = new List<FileHostAndPort>
@@ -178,9 +178,9 @@
 
             var fileConfiguration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamHostAndPorts = new List<FileHostAndPort>
@@ -208,11 +208,11 @@
         }
 
         [Fact]
-        public void should_call_pre_authorisation_middleware()
+        public void should_call_pre_authorization_middleware()
         {
             var configuration = new OcelotPipelineConfiguration
             {
-                PreAuthorisationMiddleware = async (ctx, next) =>
+                PreAuthorizationMiddleware = async (ctx, next) =>
                 {
                     _counter++;
                     await next.Invoke();
@@ -223,9 +223,9 @@
 
             var fileConfiguration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamHostAndPorts = new List<FileHostAndPort>
@@ -268,9 +268,9 @@
 
             var fileConfiguration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/",
                             DownstreamHostAndPorts = new List<FileHostAndPort>
@@ -317,9 +317,9 @@
 
             var fileConfiguration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/west",
                             DownstreamHostAndPorts = new List<FileHostAndPort>

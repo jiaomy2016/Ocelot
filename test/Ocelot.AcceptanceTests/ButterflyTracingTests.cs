@@ -1,11 +1,10 @@
 namespace Ocelot.AcceptanceTests
 {
     using Butterfly.Client.AspNetCore;
-    using Configuration.File;
+    using Ocelot.Configuration.File;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
-    using Rafty.Infrastructure;
     using Shouldly;
     using System;
     using System.Collections.Generic;
@@ -39,9 +38,9 @@ namespace Ocelot.AcceptanceTests
             int port2 = RandomPortFinder.GetRandomPort();
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/api/values",
                             DownstreamScheme = "http",
@@ -60,7 +59,7 @@ namespace Ocelot.AcceptanceTests
                                 UseTracing = true
                             }
                         },
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/api/values",
                             DownstreamScheme = "http",
@@ -111,9 +110,9 @@ namespace Ocelot.AcceptanceTests
             int port = RandomPortFinder.GetRandomPort();
             var configuration = new FileConfiguration
             {
-                ReRoutes = new List<FileReRoute>
+                Routes = new List<FileRoute>
                     {
-                        new FileReRoute
+                        new FileRoute
                         {
                             DownstreamPathTemplate = "/api/values",
                             DownstreamScheme = "http",
